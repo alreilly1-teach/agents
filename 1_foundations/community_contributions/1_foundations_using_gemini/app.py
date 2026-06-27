@@ -1,13 +1,20 @@
 from dotenv import load_dotenv
 from openai import OpenAI
+import getpass
 import json
 import os
+from pathlib import Path
 import requests
 from pypdf import PdfReader
 import gradio as gr
 
 
-load_dotenv(override=True)
+# Resolve the repo-root .env regardless of the working directory at runtime
+_repo_root = Path(__file__).resolve().parents[3]
+load_dotenv(dotenv_path=_repo_root / ".env", override=True)
+
+if not os.getenv("GOOGLE_API_KEY"):
+    os.environ["GOOGLE_API_KEY"] = getpass.getpass("GOOGLE_API_KEY not found in .env — enter it now: ")
 
 def push(text):
     requests.post(
