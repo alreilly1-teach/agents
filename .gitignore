@@ -218,3 +218,6 @@ memory.db
 6_mcp/frontend/node_modules/
 6_mcp/frontend/*.tsbuildinfo
 *.env
+
+# Personal course work — lives in BobPractice/ai-course/
+1_foundations/me/
